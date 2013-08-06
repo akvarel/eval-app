@@ -1,0 +1,67 @@
+{
+  "apiVersion" : "1.0.0-SNAPSHOT",
+  "swaggerVersion" : "1.1",
+  "basePath" : "http://localhost:8002/api",
+  "resourcePath" : "/eval",
+  "apis" : [ {
+    "path" : "/eval/{scriptId}",
+    "description" : "the eval API",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "summary" : "Execute script and return source,result and output",
+      "responseClass" : "Script",
+      "nickname" : "getScriptById",
+      "parameters" : [ {
+        "name" : "scriptId",
+        "description" : "The script Id",
+        "paramType" : "path",
+        "required" : true,
+        "allowMultiple" : false,
+        "dataType" : "string"
+      } ],
+      "errorResponses" : [ {
+        "code" : 400,
+        "reason" : "Invalid script Id"
+      } ]
+    } ]
+  }, {
+    "path" : "/eval/",
+    "description" : "the eval API",
+    "operations" : [ {
+      "httpMethod" : "POST",
+      "summary" : "Create script",
+      "notes" : "Currently only JavaScript is supported",
+      "responseClass" : "ScriptResponse",
+      "nickname" : "createScript",
+      "parameters" : [ {
+        "description" : "Created script object",
+        "paramType" : "body",
+        "required" : true,
+        "allowMultiple" : false,
+        "dataType" : "Script"
+      } ]
+    } ]
+  } ],
+  "models" : {
+    "Script" : {
+      "id" : "Script",
+      "properties" : {
+        "evalResult" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "scriptType" : {
+          "type" : "string"
+        },
+        "scriptBody" : {
+          "type" : "string"
+        },
+        "output" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

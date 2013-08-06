@@ -1,0 +1,90 @@
+{
+  "apiVersion":"0.2",
+  "swaggerVersion":"1.1",
+  "basePath":"http://localhost:8002/api",
+  "resourcePath":"/eval",
+  "apis":[
+    {
+      "path":"/eval",
+      "description":"Operations about script",
+      "operations":[
+        {
+          "httpMethod":"POST",
+          "summary":"Create script",
+          "notes":"Currently only JavaScript is supported",
+          "responseClass":"long",
+          "nickname":"createScript",
+          "parameters":[
+            {
+              "name":"script",
+              "description":"Created script object",
+              "paramType":"body",
+              "required":true,
+              "allowMultiple":false,
+              "dataType":"Script"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path":"/eval/{scriptId}",
+      "description":"Operations about script",
+      "operations":[
+        {
+          "httpMethod":"GET",
+          "summary":"Execute script and return source,result and output",
+          "responseClass":"Script",
+          "nickname":"getScriptById",
+          "parameters":[
+            {
+              "name":"scriptId",
+              "description":"The script Id",
+              "paramType":"path",
+              "required":true,
+              "allowMultiple":false,
+              "dataType":"long"
+            }
+          ],
+          "errorResponses":[
+            {
+              "code":400,
+              "reason":"Invalid script Id"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "models":{
+    "Script":{
+      "id":"Script",
+      "properties":{
+        "id":{
+          "type":"long"
+        },
+        "scriptBody":{
+          "type":"string"
+        },
+        "scriptType":{
+          "allowableValues":{
+            "valueType":"LIST",
+            "values":[
+              "1-javascript",
+              "2-python"
+            ],
+            "valueType":"LIST"
+          },
+          "description":"Script type",
+          "type":"string"
+        },
+        "evalResult":{
+          "type":"string"
+        },
+        "output":{
+          "type":"string"
+        }
+      }
+    }
+  }
+}

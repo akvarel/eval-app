@@ -1,0 +1,9 @@
+{
+  "apiVersion" : "1.0.0-SNAPSHOT",
+  "swaggerVersion" : "1.1",
+  "basePath" : "http://localhost:8002/api",
+  "apis" : [ {
+    "path" : "/eval",
+    "description" : ""
+  } ]
+}
